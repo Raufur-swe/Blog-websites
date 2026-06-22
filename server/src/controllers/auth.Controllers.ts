@@ -53,7 +53,7 @@ export const authController = {
 
         // create profile
         await profileModel.create({
-            author : user._id
+            user : user._id
         })
 
         // genarate accesstoken and refreshtoken

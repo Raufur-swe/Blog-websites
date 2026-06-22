@@ -4,7 +4,7 @@ import mongoose, { model } from "mongoose";
 import { Iprofile } from "../types/profile.types.js";
 
 const profileSchema = new mongoose.Schema<Iprofile>({
-    author : {
+    user : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "user",
         required : true ,

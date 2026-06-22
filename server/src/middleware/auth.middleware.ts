@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verifyAccessToken } from "../utils/jwt.js";
 import { JwtPayload } from "jsonwebtoken";
+import { IUserPayload } from "../types/express.js";
 
 export const authMiddleware =(req: Request , res: Response , next : NextFunction)=>{
    try {
@@ -12,7 +13,7 @@ export const authMiddleware =(req: Request , res: Response , next : NextFunction
         })
     }
 
-    const decode = verifyAccessToken(token) as JwtPayload;
+    const decode = verifyAccessToken(token) as IUserPayload ;
 
     req.user = decode
 
