@@ -1,0 +1,28 @@
+// create a profile schema
+
+import mongoose, { model } from "mongoose";
+import { Iprofile } from "../types/profile.types.js";
+
+const profileSchema = new mongoose.Schema<Iprofile>({
+    author : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "user",
+        required : true ,
+        unique : true,
+    },
+     image: {
+      type: String,
+      default: null,
+      trim: true,
+    },
+      bio: {
+      type: String,
+      default: "",
+      maxlength: 300,
+      trim: true,
+    },
+},{timestamps : true})
+
+const profileModel = model<Iprofile>("profile" , profileSchema)
+
+export default profileModel

@@ -15,7 +15,9 @@ export const genarateAccessToken = (payload : jwtPlayload) : string =>{
     return jwt.sign(payload , env.ACCESS_TOKEN , {expiresIn : "15m"} )
 }
 
-//// genarate refresh token
+/*here we generate token for redirect or auto login */
+
+// genarate refresh token
 export const genarateRefreshToken = (payload : jwtPlayload) : string =>{
     return jwt.sign(payload , env.REFRESH_TOKEN , {expiresIn : "7d"} )
 }

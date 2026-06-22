@@ -23,3 +23,11 @@ export const registerValidator = z.object({
 
 //*এখানে RegisterInput automatically TypeScript type generate করবে, ফলে আলাদা RegisterPayload interface লেখারও দরকার হবে না। */
 export type RegisterInput = z.infer<typeof registerValidator>;
+
+// login validations
+export const loginValidator = z.object({
+  email: z.string().email("invalid email"),
+    password: z.string().min(6, "invalid password , must be 6 carecter or more")
+});
+
+export type LoginInput = z.infer<typeof loginValidator>;
