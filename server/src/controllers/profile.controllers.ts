@@ -12,7 +12,7 @@ export const profileController = {
 
         const userId = req.user?.id;
 
-        const profile = await profileModel.findOne({ user: userId }).populate("user", "name , email , role");
+        const profile = await profileModel.findOne({ user: userId }).populate("user", "name , email , role" );
 
         if (!profile) {
             return res.status(404).json({

@@ -21,6 +21,15 @@ const profileSchema = new mongoose.Schema<Iprofile>({
       maxlength: 300,
       trim: true,
     },
+    totalBlog :{
+      type : Number,
+      default : 0,
+
+    },
+    totalView :{
+      type : Number,
+      default : 0
+    }
 },{timestamps : true})
 
 const profileModel = model<Iprofile>("profile" , profileSchema)
