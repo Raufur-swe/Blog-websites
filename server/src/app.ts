@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser"
 import authRouter from "./routes/authRoutes/auth.route.js";
 import profileRoute from "./routes/profile/profile.routes.js";
 import adminRoutes from "./routes/adminRoutes/admin.routes.js";
+import blogRoutes from "./routes/blogRoutes/blog.routes.js";
 
 // set db dns
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
@@ -23,6 +24,9 @@ app.use("/api/profile", profileRoute)
 
 // admin routes
 app.use("/api/admin", adminRoutes)
+
+//blog routes
+app.use("/api/blog" , blogRoutes)
 
 
 
