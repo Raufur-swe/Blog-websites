@@ -42,12 +42,20 @@ export const profileController = {
             updates.bio = req.body.bio;
         }
 
+
+        if (Object.keys(updates).length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "No fields provided to update",
+            });
+        }
+
         // Update profile and return updated document
         const profile = await profileModel.findOneAndUpdate(
-            { author: userId },
+            { user: userId },
             { $set: updates },
             {
-                new: true, // return updated document
+                returnDocument: 'after', // return updated document
                 runValidators: true, // apply schema validations
             }
         );
