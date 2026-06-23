@@ -3,6 +3,7 @@
 import { Request, Response } from "express";
 import TryCatch from "../middleware/TryCatch.js";
 import profileModel from "../models/profile.model.js";
+import { blogModel } from "../models/blog,model.js";
 
 export const profileController = {
 
@@ -20,9 +21,36 @@ export const profileController = {
                 message: "Profile not found",
             });
         }
+
+        const totalBlog = await blogModel.countDocuments({
+            author : userId,
+            status : "active"
+        })
+
+        // only active blog
+        const ViewResult = await blogModel.aggregate([
+            {
+                $match :{
+                    author : userId,
+                    status : "active",
+                },
+            },
+            {
+                $group:{
+                    _id : null,
+                   totalViewS : {$sum  : "$views"}
+                }
+            }
+        ])
+const totalViews = ViewResult[0]?.totalViews || 0;
+
         res.status(200).json({
             success: true,
             profile,
+            stats:{
+                totalBlog,
+                totalViews
+            }
         });
     }),
 
